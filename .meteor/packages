@@ -23,3 +23,6 @@ anti:fake
 check
 ejson
 dburles:factory
+accounts-base
+accounts-password
+accounts-ui
