@@ -4,7 +4,11 @@ Template.messages.helpers({
 
 Accounts.ui.config({
     passwordSignupFields: 'USERNAME_AND_EMAIL'
-})
+});
+
+Template.registerHelper('currentChannel', function () {
+	return Session.get('channel');
+});
 
 Template.registerHelper("timestampToTime", function (timestamp) {
 	var date = new Date(timestamp);
@@ -25,5 +29,18 @@ Template.registerHelper("usernameFromId", function (userId) {
 	return user.username;
 });
 
-Meteor.subscribe('messages');
-Meteor.subscribe('allUsernames');
+Template.listings.helpers({
+	channels: function () {
+		return Channels.find();
+	}
+});
+
+Template.channel.helpers({
+	active: function () {
+		if (Session.get('channel') === this.name) {
+			return "active";
+		} else {
+			return "";
+		}
+	}
+});
